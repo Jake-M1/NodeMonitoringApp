@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Reload the page and check all IP Addresses every minute -->
+    <meta http-equiv="refresh" content="60">
+</head>
+<body>
+    <div class="main">
+        <h1>
+            Node Monitoring
+        </h1>
+
+        <!-- Form to add more IP Addresses -->
+        <form action="/create" method="post">
+            <input type="text" id="ipform" name="ipform"/>
+            <input type="submit" value="Add IP Address" />
+        </form>
+
+        <br>
+
+        <!-- Table for info to display -->
+        <table style="width:100%">
+            <tr>
+                <th>IP Address</th>
+                <th>Status</th>
+                <th>Time Last Updated</th>
+            </tr>
+            {% for i in range(IPs | length) %}
+            <tr>
+                <td>{{IPs[i]}}</td>
+                <td>{{status[i]}}</td>
+                <td>{{times[i]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+    </div>
+
+</body>
+</html>
